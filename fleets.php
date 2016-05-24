@@ -26,7 +26,7 @@
                                             <td>TR-00{$truck['idtrucks']}</td>
                                             <td>{$truck['jenis_angkutan']}</td>
                                             <td>{$truck['capacity']}</td>
-                                            <td>{$truck['cost/km']}</td>
+                                            <td>IDR {$truck['costkm']}.00</td>
                                     </tr>";
                                 }
                             ?>

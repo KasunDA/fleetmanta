@@ -55,13 +55,16 @@ include('includes/header.php');
         </div>
     </div>
 </main>
-<?php include('includes/scripts.php');?>
+<?php include('includes/scripts.php');
+include('Functions/select_optim_route.php');
+?>
 <!--Google maps API-->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZXB3DMls7nIoTpVeC2PjLy4dQmjPAe0E&callback=initialize"
 type="text/javascript"></script>
 <script>
 //initialize google maps
 var waypoint = <?=json_encode($stops->array);?>;
+var optim = <?=json_encode($optim->array);?>;
 function initialize() {
     var markerArray = [];
     // Instantiate a directions service.
@@ -83,7 +86,9 @@ function initialize() {
     var map=new google.maps.Map(document.getElementById("reportMap"),mapProp);
 
     // Create a renderer for directions and bind it to the map.
-    var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+    var directionsDisplay = new google.maps.DirectionsRenderer({map: map, polylineOptions: {
+      strokeColor:"#00" + (Math.round(Math.random() * 0XFFFF)).toString(16)
+    }});
 
     // Instantiate an info window to hold step text.
     var stepDisplay = new google.maps.InfoWindow;
@@ -92,9 +97,9 @@ function initialize() {
 
     function calculateAndDisplayRoute(directionsDisplay, directionsService, markerArray, stepDisplay, map) {
         var wypoint = [];
-        for (var i = 1; i < waypoint.length-1; i++) {
+        for (var i = 1; i < optim.length; i++) {
             wypoint.push({
-                location: new google.maps.LatLng(waypoint[i].lat,waypoint[i].lang)}
+                location: new google.maps.LatLng(optim[i].lat,optim[i].lang)}
             );
         }
         // First, remove any existing markers from the map.
@@ -106,7 +111,7 @@ function initialize() {
         // WALKING directions.
         directionsService.route({
             origin: new google.maps.LatLng(waypoint[0].lat, waypoint[0].lang),
-            destination: new google.maps.LatLng(waypoint[waypoint.length-1].lat, waypoint[waypoint.length-1].lang),
+            destination: new google.maps.LatLng(waypoint[0].lat, waypoint[0].lang),
             waypoints: wypoint,
             travelMode: google.maps.TravelMode.WALKING
         }, function(response, status) {
@@ -119,6 +124,24 @@ function initialize() {
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
+        });
+    }
+
+    function showDestinationMarker(directionResult) {
+        var marker = new google.maps.Marker({
+            position: directionResult.routes[0].legs[0].end_location,
+            map: map
+        });
+        attachMarkerText(marker, "The end.");
+        markerArray[0] = marker;
+    }
+
+    function attachMarkerText(marker, text) {
+        google.maps.event.addListener(marker, 'click', function() {
+            // Open an info window when the marker is clicked on,
+            // containing the text of the step.
+            stepDisplay.setContent(text);
+            stepDisplay.open(map, marker);
         });
     }
 
