@@ -30,7 +30,7 @@ COMMIT;
 START TRANSACTION;
 INSERT INTO trips_has_stops VALUE(@tripsid, {$originbreak[0]}, 'origin');
 INSERT INTO trips_has_stops VALUE(@tripsid, {$destbreak[0]}, 'destination');
-INSERT INTO orders VALUE(NULL,{$goods}, {$loadAmount}, @tripsid, {$orilat}, {$orilong}, {$destlat}, {$destlong}, NULL, 'new');
+INSERT INTO orders VALUE(NULL,{$goods}, {$loadAmount}, @tripsid, NULL, {$orilat}, {$orilong}, {$destlat}, {$destlong}, NULL, 'new');
 COMMIT;
 ");
 $insertTask->execTransaction("Berhasil");

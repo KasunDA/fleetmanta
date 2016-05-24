@@ -12,6 +12,10 @@ main{
     margin-right: auto;
     display: table;
 }
+.long{
+    width: 100%;
+    display: block;
+}
 #menu{
     margin: 20px;
     position: relative;
@@ -47,6 +51,9 @@ body{
 }
 #googleMap{
     height: 100%;
+}
+#reportMap{
+    height: 300px;
 }
 table.highlight>tbody>tr:hover{
     background-color: #CFD8DC;

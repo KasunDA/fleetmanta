@@ -22,5 +22,9 @@ COMMIT;
 START TRANSACTION;
 UPDATE orders SET flag = 'old';
 COMMIT;
+
+START TRANSACTION;
+UPDATE orders,trucks set orders.trucks_idtruck = trucks.idtrucks;
+COMMIT;
 ");
 $insertTask->execTransaction("Berhasil");

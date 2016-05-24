@@ -61,7 +61,7 @@
                             </ul>
                         </li>
                         <li><a href="index.php"><i class="material-icons left">map</i> Routeplans</a></li>
-                        <li><a href="locations.php"><i class="material-icons left">place</i> Locations</a></li>
+                        <!-- <li><a href="locations.php"><i class="material-icons left">place</i> Locations</a></li> -->
                         <li><a href="fleets.php"><i class="material-icons left">local_shipping</i> Fleets</a></li>
                         <li><a href="containers.php"><i class="material-icons left">local_shipping</i> Containers</a></li>
                     </ul>
@@ -111,7 +111,7 @@
             </ul>
         </li>
         <li class="no-padding"><a href="index.php"><i class="material-icons left">map</i>Routeplans </a></li>
-        <li class="no-padding"><a href="locations.php"><i class="material-icons left">place</i>Locations </a></li>
+        <!-- <li class="no-padding"><a href="locations.php"><i class="material-icons left">place</i>Locations </a></li> -->
         <li class="no-padding"><a href="fleets.php"><i class="material-icons left">local_shipping</i>Fleets </a></li>
         <li class="no-padding"><a href="containers.php"><i class="material-icons left">local_shipping</i>Containers </a></li>
     </ul>
