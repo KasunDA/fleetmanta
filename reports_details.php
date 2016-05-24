@@ -87,7 +87,7 @@ function initialize() {
 
     // Create a renderer for directions and bind it to the map.
     var directionsDisplay = new google.maps.DirectionsRenderer({map: map, polylineOptions: {
-      strokeColor:"#00" + (Math.round(Math.random() * 0XFFFF)).toString(16)
+      strokeColor: 'red'
     }});
 
     // Instantiate an info window to hold step text.
